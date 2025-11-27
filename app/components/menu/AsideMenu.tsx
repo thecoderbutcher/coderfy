@@ -18,7 +18,7 @@ const AsideMenu = () => {
       </div>
       <div className="bg-zinc-900 rounded-lg p-2 flex-1">
         <ul>
-          <AsideMenuItem text="Tu biblioteca">
+          <AsideMenuItem text="Biblioteca">
             <VscLibrary />
           </AsideMenuItem>
           {playlists.map((playlist, index) => (
