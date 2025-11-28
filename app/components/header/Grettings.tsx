@@ -7,7 +7,7 @@ interface GreetingsProps {
 }
 const Greetings = ({ name }: GreetingsProps) => {
   const path = usePathname();
-  const init = path === "/" ? "Bienvenido " : "";
+  const init = path === "/" ? "Welcome " : "";
   return (
     <div className="relative z-10  pt-8">
       <h1 className="text-3xl font-bold text-emerald-50">
