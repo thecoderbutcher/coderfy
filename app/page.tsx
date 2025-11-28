@@ -1,4 +1,7 @@
+"use client";
 import Header from "./components/header/Header";
+import useAudioStore from "@/store/useStore";
+import HeaderPlaylist from "./components/playlist/HeaderPlaylist";
 
 export default function Home() {
   return (

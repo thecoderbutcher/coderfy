@@ -1,31 +1,32 @@
-import type { Playlist } from "@/lib/data";
+"use client";
 import Image from "next/image";
-import { Link } from "next-view-transitions";
+import { playlists } from "@/lib/data";
+import useAudioStore from "@/store/useStore";
 
-interface CardProps {
-  playlist: Playlist;
-}
-const AsideMenuCard = ({ playlist }: CardProps) => {
-  const { id, cover, title, artists, color } = playlist;
-  const artistsString = artists.join(", ");
-
+const AsideMenuCard = () => {
+  const { setCurrentPlaylist } = useAudioStore();
   return (
-    <Link
-      href={`/playlist/${id}`}
-      className="flex relative p-2 overflow-hidden items-center gap-5 rounded-md hover:bg:zinc-500"
-    >
-      <Image
-        src={cover}
-        alt={`Cover of ${title} by ${artists}`}
-        width={80}
-        height={80}
-        className="object-cover rounded-md"
-      />
-      <div className="flex flex-col flex-auto truncate">
-        <h4 className="text-sm text-white">{title}</h4>
-        <span className="text-gray-400">{artistsString}</span>
-      </div>
-    </Link>
+    <div>
+      {playlists.map((playlist, index) => (
+        <div
+          key={index}
+          className={`flex relative p-2 overflow-hidden items-center gap-5 rounded-md cursor-pointer hover:bg-zinc-800/70`}
+          onClick={() => setCurrentPlaylist(playlist)}
+        >
+          <Image
+            src={playlist.cover}
+            alt={`Cover of ${playlist.title} by ${playlist.artists}`}
+            width={80}
+            height={80}
+            className="object-cover rounded-md"
+          />
+          <div className="flex flex-col flex-auto truncate">
+            <h4 className="text-sm text-white">{playlist.title}</h4>
+            <span className="text-gray-400">{playlist.artists.join(", ")}</span>
+          </div>
+        </div>
+      ))}
+    </div>
   );
 };
 
